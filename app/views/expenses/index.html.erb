@@ -1,1 +1,18 @@
 <h2>家計簿アプリ</h2>
+<p><%= @user.name %></p>
+
+<div>
+  <p>レシートの入力</p>
+  <%= form_for(@item, url: {controller: 'expenses', action: 'create'}) do |f| %>
+    <%= f.label :purchase_date %>
+    <%= f.date_select :purchase_date %>
+
+    <%= f.label :item_name %>
+    <%= f.text_field :item_name %>
+
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+
+    <%= f.submit "登録" %>
+  <% end %>
+</div>
