@@ -1,7 +1,7 @@
 <h2>家計簿アプリ</h2>
 <p><%= @user.name %></p>
 
-<div>
+<div id="index_js">
   <p>レシートの入力</p>
   <%= form_for(@item, url: {controller: 'expenses', action: 'create'}) do |f| %>
     <%= f.label :purchase_date %>
@@ -16,3 +16,6 @@
     <%= f.submit "登録" %>
   <% end %>
 </div>
+
+<%#= javascript_pack_tag 'hello_vue' %>
+<%#= stylesheet_pack_tag 'hello_vue' %>
