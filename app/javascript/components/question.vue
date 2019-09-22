@@ -3,7 +3,7 @@
     <div class="container">
       <form>
         <div class="form-group">
-          <label for="form_title">質問名</label>
+          <label>質問名</label>
           <input type="text" v-model="question.content" class="form-control" id="content">
           <button type="button" class="btn btn-primary" v-on:click="postQuestion">作成する</button>
         </div>
@@ -11,9 +11,14 @@
     </div>
     <ul>
       <li v-for="question in questions">
-        <p>{{ question.content }} {{ question.created_at }}</p>
+        <p>{{ question.content }} {{ question.created_at | timeFormat }} {{ question.user.name }}</p>
       </li>
     </ul>
+    <div>
+      <p>実験エリア</p>
+      <input type="text" v-model="msg">
+      <p>{{ msg }}</p>
+    </div>
   </div>
 </template>
 
@@ -23,10 +28,19 @@
   export default {
     data: function () {
       return {
+        msg: "",
         questions: [],
         question: {
           content: null,
         },
+      }
+    },
+    filters: {
+      timeFormat: function(time) {
+        var date = time.split(/[-T:.]/);
+        var fullDate = date[0] + "/" + date[1] + "/" + date[2];
+        var fullTime = date[3] + ":" + date[4];
+        return fullDate + " " + fullTime
       }
     },
     created: function() {
