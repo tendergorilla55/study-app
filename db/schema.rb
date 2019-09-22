@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20190922044128) do
   end
 
   create_table "questions", force: :cascade do |t|
+    t.string   "title",      null: false
     t.text     "content",    null: false
     t.integer  "user_id"
     t.datetime "created_at"

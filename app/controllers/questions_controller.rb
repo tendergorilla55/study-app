@@ -1,10 +1,10 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, only: [:index, :show]
 
   def index
-    @user = current_user
     @question = Question.new
-    @questions = Question.all
+    @questions = Question.all.order(created_at: "DESC")
     respond_to do |format|
       format.html
       format.json
@@ -18,8 +18,20 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def show
+    @question = Question.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
   private
+  def set_user
+    @user = current_user
+  end
+
   def question_params
-    params.require(:question).permit(:content).merge(user_id: current_user.id)
+    params.require(:question).permit(:title, :content).merge(user_id: current_user.id)
   end
 end

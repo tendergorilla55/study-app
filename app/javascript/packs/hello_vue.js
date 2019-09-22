@@ -42,7 +42,7 @@ Vue.use(VueAxiosPlugin, { axios: axios });
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
-    el: '#app',
+    el: '#vue_area',
     router
     // data: {
     //   message: "Can you say hello?"

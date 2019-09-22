@@ -1,1 +1,1 @@
-json.array! @questions, :content, :user, :created_at
+json.array! @questions, :id, :title, :content, :user, :created_at

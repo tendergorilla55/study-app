@@ -3,15 +3,29 @@
     <div class="container">
       <form>
         <div class="form-group">
-          <label>質問名</label>
-          <input type="text" v-model="question.content" class="form-control" id="content">
+          <div>
+            <label>質問タイトル</label>
+            <input type="text" v-model="question.title">
+          </div>
+          <div>
+            <label>質問内容</label>
+            <textarea type="text" v-model="question.content" id="content"></textarea>
+          </div>
           <button type="button" class="btn btn-primary" v-on:click="postQuestion">作成する</button>
         </div>
       </form>
     </div>
     <ul>
       <li v-for="question in questions">
-        <p>{{ question.content }} {{ question.created_at | timeFormat }} {{ question.user.name }}</p>
+        <div data-turbolinks="false">
+          <p>
+            {{ question.title }} {{ question.created_at | timeFormat }} {{ question.user.name }}
+          </p>
+          <p>
+            {{ question.content }}
+          </p>
+          <router-link :to="{ name: 'question_path', params: { id: question.id }}">詳細</router-link>
+        </div>
       </li>
     </ul>
     <div>
@@ -23,7 +37,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import axios from 'axios/index'
 
   export default {
     data: function () {
@@ -31,6 +45,7 @@
         msg: "",
         questions: [],
         question: {
+          title: null,
           content: null,
         },
       }
@@ -43,22 +58,10 @@
         return fullDate + " " + fullTime
       }
     },
-    created: function() {
-      // this.questions = questions
-    },
     mounted: function() {
       this.fetchQuestions();
     },
     methods: {
-      // fetchQuestions: function() {
-      //   axios.get('/questions').then(res => {
-      //     for(var i = 0; i < res.data.questions.length; i++) {
-      //       this.questions.push(res.data.questions[i]);
-      //     }
-      //   }, (error) => {
-      //     console.log(error);
-      //   });
-      // },
       fetchQuestions: function() {
         axios.get('/questions.json').then(res => {
           this.questions = res.data
@@ -72,6 +75,7 @@
           question: this.question,
         }).then(res => {
           this.question.id = res.data.id;
+          this.question.title = "";
           this.question.content = "";
           this.fetchQuestions();
         });

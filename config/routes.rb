@@ -6,7 +6,4 @@ Rails.application.routes.draw do
   resources :expenses
   resources :questions
 
-  namespace :api, {format: 'json'} do
-    resources :questions, only: %i(index)
-  end
 end
