@@ -6,5 +6,8 @@
   <%= link_to "新規登録", new_user_registration_path, class: 'post' %>
 <% end %>
 <div>
-  <%= link_to "家計簿アプリへ", expenses_path %>
+  <%= link_to "質問箱へ", questions_path, data: {"turbolinks" => false} %>
+</div>
+<div>
+  <%= link_to "家計簿アプリへ", expenses_path, data: {"turbolinks" => false} %>
 </div>
