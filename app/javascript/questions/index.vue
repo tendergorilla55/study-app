@@ -37,7 +37,7 @@
 </template>
 
 <script>
-  import axios from 'axios/index'
+  import axios from 'axios'
 
   export default {
     data: function () {
@@ -66,7 +66,7 @@
         axios.get('/questions.json').then(res => {
           this.questions = res.data
         }).catch(res => {
-          alert('サーバーエラーが発生しました。')
+          alert('サーバーエラーが発生しました。');
           window.location.href = '/';
         });
       },
