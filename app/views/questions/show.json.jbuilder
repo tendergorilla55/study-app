@@ -1,4 +1,4 @@
-json.title      @question.title
-json.content    @question.content
-json.user       @question.user
-json.created_at @question.created_at
+json.question @question, :title, :content, :user, :created_at
+json.answers do
+  json.array! @answers, :text, :created_at, :user
+end

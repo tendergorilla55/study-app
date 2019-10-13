@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'welcome/index'
 
-  resources :expenses
-  resources :questions
+  resources :expenses, only:[:index, :create]
+  resources :questions do
+    member do
+      post 'answer'
+    end
+  end
 
 end

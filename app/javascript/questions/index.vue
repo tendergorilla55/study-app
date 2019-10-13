@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h2>質問箱</h2>
+    <a href="/">TOPに戻る</a>
+    <p></p>
     <div class="container">
       <form>
         <div class="form-group">
@@ -11,13 +14,13 @@
             <label>質問内容</label>
             <textarea type="text" v-model="question.content" id="content"></textarea>
           </div>
-          <button type="button" class="btn btn-primary" v-on:click="postQuestion">作成する</button>
+          <button type="button" class="btn btn-primary" v-on:click="postQuestion">質問する</button>
         </div>
       </form>
     </div>
     <ul>
       <li v-for="question in questions">
-        <div data-turbolinks="false">
+        <div >
           <p>
             {{ question.title }} {{ question.created_at | timeFormat }} {{ question.user.name }}
           </p>
@@ -63,8 +66,8 @@
     },
     methods: {
       fetchQuestions: function() {
-        axios.get('/questions.json').then(res => {
-          this.questions = res.data
+        axios.get(`/questions.json`).then(res => {
+          this.questions = res.data;
         }).catch(res => {
           alert('サーバーエラーが発生しました。');
           window.location.href = '/';
