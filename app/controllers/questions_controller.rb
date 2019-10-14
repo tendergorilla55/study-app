@@ -33,7 +33,7 @@ class QuestionsController < ApplicationController
   def answer
     answer = Answer.new(answer_params)
     if answer.save
-      render json: { render: show, status: :success }
+      render json: {status: :ok, id: answer_params[:question_id]}
     end
   end
 

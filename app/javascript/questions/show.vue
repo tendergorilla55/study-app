@@ -10,6 +10,7 @@
     <div>
       <label>回答</label>
       <textarea type="text" v-model="answer.text" id="comment"></textarea>
+      <input type="hidden" id="id" name="id" value="9">
       <button type="button" class="btn brn-primary" v-on:click="postAnswer">回答する</button>
     </div>
     <div>
@@ -74,7 +75,8 @@
           answer: this.answer,
         }).then(res => {
           this.answer.text ="";
-          this.fetchQustion(id);
+          debugger;
+          this.fetchQustion(res.data.id);
         })
       }
     }
