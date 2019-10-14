@@ -81,6 +81,9 @@
           this.question.title = "";
           this.question.content = "";
           this.fetchQuestions();
+          if (res.data.status == "ng") {
+            alert('質問を入力してください')
+          }
         });
       },
     }

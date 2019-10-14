@@ -14,9 +14,9 @@ class QuestionsController < ApplicationController
   def create
     question = Question.new(question_params)
     if question.save
-      render json: { render: :index, status: :success }
+      render json: { render: :index, status: :ok }
     else
-      render json: { render: :index }
+      render json: { render: :index, status: :ng }
     end
   end
 
@@ -34,6 +34,8 @@ class QuestionsController < ApplicationController
     answer = Answer.new(answer_params)
     if answer.save
       render json: {status: :ok, id: answer_params[:question_id]}
+    else
+      render json: {status: :ng, id: answer_params[:question_id]}
     end
   end
 

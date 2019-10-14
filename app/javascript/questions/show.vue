@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div data-turbolinks="false">
     <router-link :to="{ name: 'questions_path' }">質問箱に戻る</router-link>
     <p>
       {{ question.title }} {{ question.created_at | timeFormat }} {{ question.user.name }}
@@ -58,10 +58,10 @@
       }
     },
     mounted: function() {
-      this.fetchQustion(this.id);
+      this.fetchData(this.id);
     },
     methods: {
-      fetchQustion: function(id) {
+      fetchData: function(id) {
         axios.get(`/questions/${id}.json`).then( res => {
           this.question = res.data["question"];
           this.answers = res.data["answers"];
@@ -75,8 +75,10 @@
           answer: this.answer,
         }).then(res => {
           this.answer.text ="";
-          debugger;
-          this.fetchQustion(res.data.id);
+          this.fetchData(res.data.id);
+          if (res.data.status == "ng") {
+            alert('回答を入力してください')
+          }
         })
       }
     }
