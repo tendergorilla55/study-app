@@ -31,11 +31,6 @@
         </div>
       </li>
     </ul>
-    <div>
-      <p>実験エリア</p>
-      <input type="text" v-model="msg">
-      <p>{{ msg }}</p>
-    </div>
   </div>
 </template>
 
@@ -45,7 +40,6 @@
   export default {
     data: function () {
       return {
-        msg: "",
         questions: [],
         question: {
           title: null,
