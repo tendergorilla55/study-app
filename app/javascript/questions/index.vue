@@ -2,7 +2,6 @@
   <div>
     <h2>質問箱</h2>
     <a href="/">TOPに戻る</a>
-    <p></p>
     <div class="container">
       <form>
         <div class="form-group">
