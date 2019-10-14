@@ -19,6 +19,7 @@
 # Ignore Byebug command history file.
 .byebug_history
 .idea
+.ruby-version
 
 /public/packs
 /public/packs-test
