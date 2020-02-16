@@ -10,5 +10,9 @@ Rails.application.routes.draw do
     end
   end
   resources :weight_records, only: %i[index create]
+  # namespace :weight_records do
+  #   get '/', action: :index
+  #   post  '/', action: :create
+  # end
 
 end

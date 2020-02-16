@@ -31,11 +31,13 @@
         </tr>
       </table>
     </div>
+<!--    <line-chart></line-chart>-->
   </div>
 </template>
 
 <script>
   import axios from 'axios'
+  // import WeightRecordsChart from 'weight_records_chart'
 
   export default {
     data: function () {
@@ -74,6 +76,9 @@
         });
       }
     },
+    // components: {
+    //   WeightRecordsChart
+    // }
   }
 </script>
 

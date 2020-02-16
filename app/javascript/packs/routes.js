@@ -13,7 +13,7 @@ const router = new Router({
     { path: '/expenses', component: Expense, name: 'expenses_path'},
     { path: '/questions', component: QuestionIndex, name: 'questions_path'},
     { path: '/questions/:id(\\d+)', component: QuestionShow, name: 'question_path' },
-    { path: '/weight_records', component: WeightRecordIndex, name: 'weight_records_path' }
+    { path: '/weight_records', component: WeightRecordIndex, name: 'weight_records_path' },
   ]
 });
 

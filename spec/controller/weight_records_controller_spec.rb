@@ -21,6 +21,7 @@ describe WeightRecordsController, type: :controller do
     it "returns https success" do
       post :create, params: { record: params }
       expect(response).to have_http_status :success
+      expect(WeightRecord.all.size).to eq 1
     end
   end
 end
