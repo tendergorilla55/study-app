@@ -1,9 +1,22 @@
 class WeightRecordsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: %i[index show]
+  before_action :set_user, only: %i[index]
 
   def index
-    @weight = WeightRecord.new
+    records = WeightRecord.all.order(created_at: 'DESC')
+    respond_to do |format|
+      format.html
+      format.json { render json: records, include: [:user] }
+    end
+  end
+
+  def create
+    record = WeightRecord.new(weight_params)
+    if record.save
+      render json: { render: :index, status: :ok }
+    else
+      render json: { render: :index, status: :ng }
+    end
   end
 
   private
@@ -12,4 +25,7 @@ class WeightRecordsController < ApplicationController
     @user = current_user
   end
 
+  def weight_params
+    params.require(:record).permit(:weight, :fat_percentage, :measuring_date).merge(user_id: current_user.id)
+  end
 end

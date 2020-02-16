@@ -20,7 +20,7 @@
     </div>
     <ul>
       <li v-for="question in questions">
-        <div >
+        <div>
           <p>
             {{ question.title }} {{ question.created_at | timeFormat }} {{ question.user.name }}
           </p>
