@@ -9,5 +9,6 @@ Rails.application.routes.draw do
       post 'answer'
     end
   end
+  resources :weight_scale, only:[:index]
 
 end
