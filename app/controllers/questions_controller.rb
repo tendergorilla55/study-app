@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class QuestionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:index, :show]
+  before_action :set_user, only: %i[index show]
 
   def index
     @question = Question.new
-    questions = Question.all.order(created_at: "DESC")
+    questions = Question.all.order(created_at: 'DESC')
     respond_to do |format|
       format.html
       format.json { render json: questions, include: [:user] }
@@ -22,7 +24,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    @answers = Answer.where(question_id: params[:id]).order(created_at: "DESC")
+    @answers = Answer.where(question_id: params[:id]).order(created_at: 'DESC')
     @answer = Answer.new
     respond_to do |format|
       format.html
@@ -33,13 +35,14 @@ class QuestionsController < ApplicationController
   def answer
     answer = Answer.new(answer_params)
     if answer.save
-      render json: {status: :ok, id: answer_params[:question_id]}
+      render json: { status: :ok, id: answer_params[:question_id] }
     else
-      render json: {status: :ng, id: answer_params[:question_id]}
+      render json: { status: :ng, id: answer_params[:question_id] }
     end
   end
 
   private
+
   def set_user
     @user = current_user
   end
