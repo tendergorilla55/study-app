@@ -31,6 +31,7 @@
         </tr>
       </table>
     </div>
+    <BarChart/>
 <!--    <line-chart></line-chart>-->
   </div>
 </template>
@@ -38,6 +39,24 @@
 <script>
   import axios from 'axios'
   // import WeightRecordsChart from 'weight_records_chart'
+
+  import { Bar } from 'vue-chartjs'
+  var BarChart = {
+    extends: Bar,
+    mounted () {
+      this.renderChart({
+        //ラベル
+        labels:["１月","２月","３月","４月"],
+        //データ詳細
+        datasets: [{
+          //データタイトル
+          label:'勉強時間',
+          //データ
+          data: [20,30,40,50]
+        }]
+      });
+    }
+  }
 
   export default {
     data: function () {
@@ -76,6 +95,9 @@
         });
       }
     },
+    components: {
+      BarChart
+    }
     // components: {
     //   WeightRecordsChart
     // }
