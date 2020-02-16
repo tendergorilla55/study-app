@@ -31,18 +31,17 @@
         </tr>
       </table>
     </div>
-    <BarChart/>
+    <LineChart/>
 <!--    <line-chart></line-chart>-->
   </div>
 </template>
 
 <script>
   import axios from 'axios'
-  // import WeightRecordsChart from 'weight_records_chart'
+  import { Line } from 'vue-chartjs'
 
-  import { Bar } from 'vue-chartjs'
-  var BarChart = {
-    extends: Bar,
+  var LineChart = {
+    extends: Line,
     mounted () {
       this.renderChart({
         //ラベル
@@ -52,11 +51,14 @@
           //データタイトル
           label:'勉強時間',
           //データ
-          data: [20,30,40,50]
+          data: [20,30,40,50],
+          fill: false,
+          borderColor: '#0000ff', //線の色
+          pointBackgroundColor: '#0000ff', //点の色
         }]
       });
     }
-  }
+  };
 
   export default {
     data: function () {
@@ -96,11 +98,8 @@
       }
     },
     components: {
-      BarChart
+      LineChart
     }
-    // components: {
-    //   WeightRecordsChart
-    // }
   }
 </script>
 
