@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExpensesController < ApplicationController
   before_action :authenticate_user!
 
@@ -11,6 +13,7 @@ class ExpensesController < ApplicationController
   end
 
   private
+
   def item_params
     params.require(:expenses_item).permit(:purchase_date, :item_name, :price).merge(user_id: current_user.id)
   end

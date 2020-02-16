@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExpensesItem < ApplicationRecord
   belongs_to :user
 
