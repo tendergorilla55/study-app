@@ -40,6 +40,11 @@
   import axios from 'axios'
   import { Line } from 'vue-chartjs'
 
+  axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+  };
+
   var LineChart = {
     extends: Line,
     mounted () {
@@ -84,6 +89,7 @@
         });
       },
       postRecord: function() {
+        debugger
         axios.post('/weight_records', {
           record: this.record,
         }).then(res => {
@@ -94,6 +100,8 @@
           if (res.data.status == "ng") {
             alert('質問を入力してください')
           }
+        }).catch(error => {
+          console.log(error.response.data);
         });
       }
     },
