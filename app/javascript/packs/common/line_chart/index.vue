@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width:400px">
     <LineChart/>
   </div>
 </template>
@@ -27,7 +27,7 @@
     }
   };
 
-  export  default {
+  export default {
     components: {
       LineChart
     }
