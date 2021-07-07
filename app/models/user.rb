@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :questions
   has_many :answers
   has_many :expenses_items
+  has_many :weight_records
 
   validates :name, presence: true
 end

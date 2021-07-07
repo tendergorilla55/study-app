@@ -1,11 +1,8 @@
-# frozen_string_literal: true
-
 class QuestionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: %i[index show]
 
   def index
-    @question = Question.new
     questions = Question.all.order(created_at: 'DESC')
     respond_to do |format|
       format.html

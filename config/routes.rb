@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
   get 'page/home'
 
@@ -13,4 +11,10 @@ Rails.application.routes.draw do
       post 'answer'
     end
   end
+  resources :weight_records, only: %i[index create]
+  # namespace :weight_records do
+  #   get '/', action: :index
+  #   post  '/', action: :create
+  # end
+
 end
